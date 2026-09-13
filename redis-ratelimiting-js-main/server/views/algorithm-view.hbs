@@ -1,0 +1,101 @@
+<div id="algorithm-detail" data-algorithm="{{slug}}">
+
+  <div class="algo-header">
+    <div class="algo-title-row">
+      <h2>{{name}}</h2>
+      <a class="btn-info-icon" href="{{infoUrl}}" target="_blank" title="Compare algorithms">
+        {{> info-icon}}
+      </a>
+    </div>
+    <p>{{description}}</p>
+    <div class="algo-badges">
+      <span class="badge-redis">{{redisType}}</span>
+      <span class="badge-cmd">{{commands}}</span>
+    </div>
+  </div>
+
+  <div class="algo-grid">
+
+    <div class="viz-panel">
+      <div id="viz-container" style="width: 100%;"></div>
+    </div>
+
+    <div class="sidebar">
+
+      <div class="panel">
+        <h3 class="panel-title">Configuration</h3>
+        <form id="config-form">
+          {{#each configFields}}
+          <div class="config-group">
+            <label class="config-label">{{this.label}}</label>
+            {{#if this.options}}
+            <select name="{{this.name}}" class="config-input">
+              {{#each this.options}}
+              <option value="{{this.value}}" {{#if this.selected}}selected{{/if}}>{{this.label}}</option>
+              {{/each}}
+            </select>
+            {{else}}
+            <input
+              type="number"
+              name="{{this.name}}"
+              value="{{this.default}}"
+              min="{{this.min}}"
+              max="{{this.max}}"
+              step="{{this.step}}"
+              class="config-input"
+            />
+            {{/if}}
+          </div>
+          {{/each}}
+        </form>
+      </div>
+
+      <div class="panel">
+        <h3 class="panel-title">Actions</h3>
+        <button
+          onclick="App.sendRequest()"
+          class="btn-primary"
+        >
+          Send Request
+        </button>
+        <div class="burst-row">
+          <input
+            type="number"
+            id="burst-count"
+            value="5"
+            min="1"
+            max="50"
+            step="1"
+            class="input-burst"
+          />
+          <button
+            onclick="App.sendBurst()"
+            class="btn-secondary"
+          >
+            Send Burst
+          </button>
+        </div>
+        <button
+          onclick="App.resetAlgorithm()"
+          class="btn-reset"
+        >
+          Reset Counters
+        </button>
+      </div>
+
+      <div class="panel">
+        <h3 class="panel-title-sm">Request Log</h3>
+        <div id="result-log" class="log-container">
+          <p id="result-log-empty" class="log-empty">No requests yet</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  if (window.App) {
+    window.App.init('{{{slug}}}', {{{configJson}}});
+  }
+</script>

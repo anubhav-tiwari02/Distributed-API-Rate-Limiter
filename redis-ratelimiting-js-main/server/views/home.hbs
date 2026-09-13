@@ -1,0 +1,74 @@
+<div class="algo-cards">
+
+  <div
+    data-algo-card="fixed-window"
+    hx-get="/api/rate-limit/fixed-window/view"
+    hx-target="#algorithm-content"
+    hx-swap="innerHTML"
+    class="algo-card"
+  >
+    <h3>Fixed Window</h3>
+    <p>Fixed time intervals</p>
+  </div>
+
+  <div
+    data-algo-card="sliding-window-log"
+    hx-get="/api/rate-limit/sliding-window-log/view"
+    hx-target="#algorithm-content"
+    hx-swap="innerHTML"
+    class="algo-card"
+  >
+    <h3>Sliding Window Log</h3>
+    <p>Exact timestamp tracking</p>
+  </div>
+
+  <div
+    data-algo-card="sliding-window-counter"
+    hx-get="/api/rate-limit/sliding-window-counter/view"
+    hx-target="#algorithm-content"
+    hx-swap="innerHTML"
+    class="algo-card"
+  >
+    <h3>Sliding Window Counter</h3>
+    <p>Weighted window blending</p>
+  </div>
+
+  <div
+    data-algo-card="token-bucket"
+    hx-get="/api/rate-limit/token-bucket/view"
+    hx-target="#algorithm-content"
+    hx-swap="innerHTML"
+    class="algo-card"
+  >
+    <h3>Token Bucket</h3>
+    <p>Steady refill, burst-friendly</p>
+  </div>
+
+  <div
+    data-algo-card="leaky-bucket"
+    hx-get="/api/rate-limit/leaky-bucket/view"
+    hx-target="#algorithm-content"
+    hx-swap="innerHTML"
+    class="algo-card"
+  >
+    <h3>Leaky Bucket</h3>
+    <p>Constant drain rate</p>
+  </div>
+
+</div>
+
+<div id="algorithm-content" class="algo-content">
+  <div class="algo-empty">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1"
+        d="M13 10V3L4 14h7v7l9-11h-7z"
+      />
+    </svg>
+    <p class="algo-empty-title">Select an algorithm above to explore</p>
+    <p class="algo-empty-subtitle">Each algorithm includes an interactive
+      visualization and configurable parameters</p>
+  </div>
+</div>
