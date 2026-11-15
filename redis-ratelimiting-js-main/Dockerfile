@@ -1,5 +1,18 @@
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
+# Copy production dependencies
+FROM base AS release
+
+COPY --from=install /temp/prod/node_modules node_modules
+COPY --from=prerelease /usr/src/app/build/server/index.js ./server/index.js
+COPY --from=prerelease /usr/src/app/server/views ./server/views
+COPY --from=prerelease /usr/src/app/public ./public
+COPY --from=prerelease /usr/src/app/package.json ./package.json
+
+USER bun
+EXPOSE 8080
+
+ENTRYPOINT ["bun", "server/index.js"]
 FROM oven/bun:1.2-alpine AS base
 WORKDIR /usr/src/app
 
